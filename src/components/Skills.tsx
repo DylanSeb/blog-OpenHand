@@ -1,14 +1,14 @@
 import { motion } from 'framer-motion'
 
 const skills = [
-  'Editorial Photography',
-  'Portrait Photography',
-  'Documentary',
-  'Commercial Campaigns',
-  'Art Direction',
-  'Visual Storytelling',
-  'Photo Editing',
-  'Creative Direction',
+  'AI Systems Design',
+  'Agent & Tool Architectures',
+  'Evaluation & Instrumentation',
+  'Pattern Analysis',
+  'Distributed Systems',
+  'Long-Form Essay Writing',
+  'Editing & Revision',
+  'Quiet Team Leadership',
 ]
 
 const fadeInUp = {
@@ -24,7 +24,7 @@ export function Skills() {
       <div className="max-w-7xl mx-auto">
         {/* Section Title */}
         <motion.div {...fadeInUp} className="mb-16">
-          <span className="text-sm text-gray-500 tracking-widest uppercase">Expertise</span>
+          <span className="text-sm text-gray-500 tracking-widest uppercase">What I Practice</span>
           <div className="w-6 h-px bg-gray-600 mt-2" />
         </motion.div>
 

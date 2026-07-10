@@ -2,44 +2,44 @@ import { motion } from 'framer-motion'
 
 const experiences = [
   {
-    title: 'Senior Photographer & Creative Director',
-    company: 'National Geographic',
-    location: 'Washington D.C.',
-    period: '2020 — Present',
-    description: 'Leading visual storytelling projects across five continents. Responsible for conceptualizing and executing long-form documentary series, managing a team of 8 photographers, and establishing visual guidelines for flagship publications.',
-    skills: ['Documentary Photography', 'Team Leadership', 'Art Direction', 'Visual Storytelling', 'Project Management'],
+    title: 'Staff Engineer, Applied AI',
+    company: 'Independent',
+    location: 'Remote',
+    period: '2023 — Present',
+    description: 'Building agent and retrieval systems for teams that ship to production. Long-horizon planning, evaluation harnesses, and the plumbing that turns a demo into a habit. Writing on the side, and increasingly, in the middle.',
+    skills: ['LLM Systems', 'Agents & Tools', 'Evaluation', 'Retrieval', 'Systems Design'],
   },
   {
-    title: 'Staff Photographer',
-    company: 'The New York Times',
+    title: 'Senior Engineer, Platform',
+    company: 'A large consumer technology company',
+    location: 'Remote',
+    period: '2020 — 2023',
+    description: 'Led the platform work under a product surface used by tens of millions. Ran a small, quiet team that shipped without ceremony. Learned that the plan is worth the hour and worth throwing out by noon.',
+    skills: ['Distributed Systems', 'Reliability', 'Team Leadership', 'Roadmapping', 'Mentorship'],
+  },
+  {
+    title: 'Engineer, Quantitative Research',
+    company: 'A market-making firm',
     location: 'New York, NY',
-    period: '2018 — 2020',
-    description: 'Covered breaking news, features, and editorial assignments for print and digital platforms. Specialized in portrait photography and human interest stories. Work featured on front page 47 times.',
-    skills: ['Editorial Photography', 'Breaking News', 'Portrait Photography', 'Deadline Management', 'Photo Editing'],
+    period: '2017 — 2020',
+    description: 'Wrote and ran the tools around the models — pattern discovery, backtesting, and the unglamorous work of trusting a signal. Kept a private notebook that eventually became the beginnings of this page.',
+    skills: ['Pattern Analysis', 'Backtesting', 'Data Pipelines', 'Statistics', 'Python / C++'],
   },
   {
-    title: 'Creative Director',
-    company: 'Time Magazine',
-    location: 'New York, NY',
-    period: '2016 — 2018',
-    description: 'Oversaw visual direction for special issues and cover stories. Collaborated with editors to develop compelling visual narratives. Managed relationships with contributing photographers worldwide.',
-    skills: ['Creative Direction', 'Visual Strategy', 'Team Coordination', 'Brand Identity', 'Magazine Publishing'],
+    title: 'Software Engineer',
+    company: 'An early-stage startup',
+    location: 'San Francisco, CA',
+    period: '2015 — 2017',
+    description: 'Full-stack work on a small team. Learned to build the whole thing, learned when not to, and learned to write short weekly notes that a founder would actually read.',
+    skills: ['Full-Stack', 'Product Engineering', 'Prototyping', 'Writing for Founders'],
   },
   {
-    title: 'Staff Photographer',
-    company: 'VII Photo Agency',
-    location: 'Berlin, Germany',
-    period: '2014 — 2016',
-    description: 'Worked on long-term documentary projects focusing on social issues and human rights. Assignments included coverage in conflict zones and humanitarian crises across Europe and Middle East.',
-    skills: ['Documentary', 'Conflict Photography', 'Humanitarian Coverage', 'Long-form Projects', 'Risk Assessment'],
-  },
-  {
-    title: 'Junior Photographer',
-    company: 'Magnum Photos',
-    location: 'London, UK',
-    period: '2012 — 2014',
-    description: 'Assisted senior photographers on international assignments. Developed technical skills in both digital and analog photography. First solo exhibition at the agency gallery in 2013.',
-    skills: ['Analog Photography', 'Digital Processing', 'Studio Lighting', 'Archive Management', 'Exhibition Curation'],
+    title: 'Research Assistant',
+    company: 'A university systems lab',
+    location: 'Cambridge, MA',
+    period: '2013 — 2015',
+    description: 'Studied schedulers, contention, and the strange politeness of well-behaved systems. First serious writing done for a reader other than a compiler.',
+    skills: ['Operating Systems', 'Concurrency', 'Academic Writing', 'Instrumentation'],
   },
 ]
 
@@ -56,7 +56,7 @@ export function Work() {
       <div className="max-w-7xl mx-auto">
         {/* Section Title */}
         <motion.div {...fadeInUp} className="mb-16">
-          <span className="text-sm text-gray-500 tracking-widest uppercase">Career</span>
+          <span className="text-sm text-gray-500 tracking-widest uppercase">Working Life</span>
           <div className="w-6 h-px bg-gray-600 mt-2" />
         </motion.div>
 
@@ -64,7 +64,7 @@ export function Work() {
           {...fadeInUp}
           className="font-display text-[10vw] lg:text-section leading-none tracking-tight mb-16 lg:mb-24"
         >
-          WORK<br />EXPERIENCE
+          WORK<br />BY DAY
         </motion.h2>
 
         {/* Experiences */}

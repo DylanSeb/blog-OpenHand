@@ -35,7 +35,7 @@ export function Education() {
                 className="w-full h-auto grayscale"
               />
               <p className="mt-4 text-xs text-gray-500 tracking-widest uppercase">
-                MIT - CAMBRIDGE / USA
+                UNIVERSITY - CAMBRIDGE / USA
               </p>
             </motion.div>
 
@@ -46,19 +46,19 @@ export function Education() {
             >
               <div>
                 <h3 className="text-xl lg:text-2xl font-light text-white mb-4">
-                  Computer Science & Visual Arts
+                  Computer Science, with a minor in Literature
                 </h3>
                 <p className="text-gray-400 leading-relaxed mb-4 text-sm lg:text-base">
-                  Started with algorithms, ended with apertures. Bruce's time at MIT 
-                  gave him a unique perspective on the intersection of technology 
-                  and visual storytelling that continues to influence his work today.
+                  Learned to reason about systems in one building and to read closely in
+                  another. The habit of moving between them — proofs in the morning,
+                  paragraphs at night — is still the way I work.
                 </p>
-                <p className="text-sm text-gray-500">2008 — 2012</p>
+                <p className="text-sm text-gray-500">2011 — 2015</p>
               </div>
             </motion.div>
           </div>
 
-          {/* Parsons */}
+          {/* Second */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-24">
             <motion.div
               {...fadeInUp}
@@ -66,14 +66,14 @@ export function Education() {
             >
               <div>
                 <h3 className="text-xl lg:text-2xl font-light text-white mb-4">
-                  Photography & Visual Storytelling
+                  Independent Study — Markets & Machine Learning
                 </h3>
                 <p className="text-gray-400 leading-relaxed mb-4 text-sm lg:text-base">
-                  The decision to pursue photography full-time led Bruce to Parsons, 
-                  where he developed his signature style of documentary portraiture 
-                  and learned the fundamentals of visual narrative.
+                  Two years spent working through the canonical texts on statistical
+                  learning and market microstructure alongside a job that let me test
+                  every idea against real data. The best classroom I've had.
                 </p>
-                <p className="text-sm text-gray-500">2013 — 2015</p>
+                <p className="text-sm text-gray-500">2017 — 2019</p>
               </div>
             </motion.div>
 
@@ -84,25 +84,25 @@ export function Education() {
             >
               <img
                 src="https://images.pexels.com/photos/1595391/pexels-photo-1595391.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                alt="Parsons School of Design"
+                alt="Books and screens"
                 className="w-full h-auto grayscale"
               />
               <p className="mt-4 text-xs text-gray-500 tracking-widest uppercase">
-                PARSONS SCHOOL OF DESIGN - NEW YORK / USA
+                A LONG SELF-STUDY - NEW YORK / USA
               </p>
             </motion.div>
           </div>
 
-          {/* ICP */}
+          {/* Third */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-24">
             <motion.div {...fadeInUp}>
               <img
                 src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                alt="International Center of Photography"
+                alt="A workshop"
                 className="w-full h-auto grayscale"
               />
               <p className="mt-4 text-xs text-gray-500 tracking-widest uppercase">
-                ICP - NEW YORK / USA
+                A WRITING WORKSHOP - REMOTE
               </p>
             </motion.div>
 
@@ -113,14 +113,14 @@ export function Education() {
             >
               <div>
                 <h3 className="text-xl lg:text-2xl font-light text-white mb-4">
-                  Documentary Photography Certificate
+                  Essay Workshop
                 </h3>
                 <p className="text-gray-400 leading-relaxed mb-4 text-sm lg:text-base">
-                  An intensive program at ICP refined Bruce's approach to long-form 
-                  documentary projects and deepened his understanding of photographic 
-                  ethics and storytelling responsibility.
+                  A small, generous workshop that taught me the difference between a
+                  draft and a piece — and that the second one takes about four times
+                  as long as you think.
                 </p>
-                <p className="text-sm text-gray-500">2016</p>
+                <p className="text-sm text-gray-500">2022</p>
               </div>
             </motion.div>
           </div>

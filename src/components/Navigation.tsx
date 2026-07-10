@@ -13,9 +13,9 @@ const navItems = [
 ]
 
 const socialLinks = [
-  { label: 'Mail', href: 'mailto:bruce@banner.com' },
-  { label: 'Instagram', href: 'https://instagram.com' },
-  { label: 'Vimeo', href: 'https://vimeo.com' },
+  { label: 'Mail', href: 'mailto:hello@openhand.page' },
+  { label: 'RSS', href: '#' },
+  { label: 'Bluesky', href: 'https://bsky.app' },
 ]
 
 export function Navigation() {

@@ -2,33 +2,33 @@ import { motion } from 'framer-motion'
 
 const talks = [
   {
-    title: 'The Power of Visual Narrative',
-    event: 'Creative Conference Berlin',
+    title: 'Agents that plan diligently and hold it loosely',
+    event: 'An applied-AI conference',
+    year: '2025',
+    link: '#',
+  },
+  {
+    title: 'Evaluation as a writing practice',
+    event: 'An internal engineering summit',
+    year: '2025',
+    link: '#',
+  },
+  {
+    title: 'Patterns, priors, and the honest backtest',
+    event: 'A quant research meetup',
+    year: '2024',
+    link: '#',
+  },
+  {
+    title: 'On shipping quietly',
+    event: 'A small founders' salon',
     year: '2023',
     link: '#',
   },
   {
-    title: 'Documentary Photography in the Age of AI',
-    event: 'TED Talk',
-    year: '2023',
-    link: '#',
-  },
-  {
-    title: 'Finding Your Voice Through the Lens',
-    event: 'PhotoLondon Festival',
+    title: 'The engineer as essayist',
+    event: 'A university reading series',
     year: '2022',
-    link: '#',
-  },
-  {
-    title: 'The Responsibility of the Witness',
-    event: 'World Press Photo Awards',
-    year: '2021',
-    link: '#',
-  },
-  {
-    title: 'Light, Shadow, and Human Connection',
-    event: 'Aperture Foundation',
-    year: '2020',
     link: '#',
   },
 ]
@@ -46,7 +46,7 @@ export function Speaking() {
       <div className="max-w-7xl mx-auto">
         {/* Section Title */}
         <motion.div {...fadeInUp} className="mb-16">
-          <span className="text-sm text-gray-500 tracking-widest uppercase">Talks & Lectures</span>
+          <span className="text-sm text-gray-500 tracking-widest uppercase">Talks & Readings</span>
           <div className="w-6 h-px bg-gray-600 mt-2" />
         </motion.div>
 
