@@ -7,7 +7,7 @@ export function Hero() {
       <div className="absolute inset-0 w-full h-full">
         <img
           src="/hero-image.jpg"
-          alt="Bruce Banner"
+          alt="Open Hand"
           className="w-full h-full object-cover object-center"
         />
         {/* Dark overlay for better text readability */}
@@ -24,18 +24,18 @@ export function Hero() {
             transition={{ duration: 0.8, ease: 'easeOut' }}
           >
             <h1 className="font-display leading-none tracking-tighter text-[15vw] sm:text-[12vw] md:text-hero">
-              <span className="block text-white">BRUCE</span>
-              <span className="block text-white">BANNER</span>
-              <span className="block text-white">PHOTOGRAPHY</span>
+              <span className="block text-white">OPEN</span>
+              <span className="block text-white">HAND</span>
+              <span className="block text-white">ESSAYS</span>
             </h1>
-            
+
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.8 }}
               className="mt-6 md:mt-8 text-sm sm:text-base text-white/80 max-w-sm md:max-w-md leading-relaxed"
             >
-              Bruce was named in Aperture Magazine's prestigious "Visual 100" list, as one of the Ten Most Compelling Photographers in 2023.
+              A field notebook from a software engineer and writer — on AI systems, patterns in markets and code, and the quieter decisions of a life. Plan diligently, hold it loosely.
             </motion.p>
           </motion.div>
         </div>

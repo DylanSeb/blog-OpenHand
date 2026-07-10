@@ -2,27 +2,27 @@ import { motion } from 'framer-motion'
 
 const articles = [
   {
-    title: 'Visual Storytelling in the Digital Age',
-    publication: 'Aperture Magazine',
-    year: '2023',
+    title: 'On planning diligently, and holding it loosely',
+    publication: 'Open Hand — Featured essay',
+    year: '2026',
     link: '#',
   },
   {
-    title: 'The Ethics of Documentary Photography',
-    publication: 'Photography Journal',
-    year: '2022',
+    title: 'What markets taught me about writing production code',
+    publication: 'Open Hand',
+    year: '2025',
     link: '#',
   },
   {
-    title: 'Finding Light in Darkness: A Personal Journey',
-    publication: 'The New York Times',
-    year: '2021',
+    title: 'The evaluation you actually needed was a diary',
+    publication: 'Open Hand',
+    year: '2025',
     link: '#',
   },
   {
-    title: 'Why Black & White Still Matters',
-    publication: 'British Journal of Photography',
-    year: '2020',
+    title: 'Small rooms: on choosing a slower publishing cadence',
+    publication: 'Open Hand',
+    year: '2024',
     link: '#',
   },
 ]
@@ -40,7 +40,7 @@ export function Writing() {
       <div className="max-w-7xl mx-auto">
         {/* Section Title */}
         <motion.div {...fadeInUp} className="mb-16">
-          <span className="text-sm text-gray-500 tracking-widest uppercase">Essays & Articles</span>
+          <span className="text-sm text-gray-500 tracking-widest uppercase">Essays & Notes</span>
           <div className="w-6 h-px bg-gray-600 mt-2" />
         </motion.div>
 
