@@ -1,14 +1,14 @@
 import { motion } from 'framer-motion'
 
 const skills = [
-  'AI Systems Design',
-  'Agent & Tool Architectures',
-  'Evaluation & Instrumentation',
-  'Pattern Analysis',
-  'Distributed Systems',
-  'Long-Form Essay Writing',
-  'Editing & Revision',
-  'Quiet Team Leadership',
+  'Business Analysis',
+  'Stakeholder Management',
+  'Problem Solving',
+  'Requirements & Functional Specs (BABOK3)',
+  'Process Mapping',
+  'Java',
+  'PL/SQL',
+  'Pattern Recognition',
 ]
 
 const fadeInUp = {

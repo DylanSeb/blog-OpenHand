@@ -9,7 +9,7 @@ const navItems = [
   { id: 'work', label: 'Work' },
   { id: 'education', label: 'Education' },
   { id: 'writing', label: 'Writing' },
-  { id: 'speaking', label: 'Speaking' },
+  { id: 'signal', label: 'Signal' },
 ]
 
 const socialLinks = [

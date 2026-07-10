@@ -2,45 +2,26 @@ import { motion } from 'framer-motion'
 
 const experiences = [
   {
-    title: 'Staff Engineer, Applied AI',
-    company: 'Independent',
-    location: 'Remote',
-    period: '2023 — Present',
-    description: 'Building agent and retrieval systems for teams that ship to production. Long-horizon planning, evaluation harnesses, and the plumbing that turns a demo into a habit. Writing on the side, and increasingly, in the middle.',
-    skills: ['LLM Systems', 'Agents & Tools', 'Evaluation', 'Retrieval', 'Systems Design'],
+    title: 'Business Analyst',
+    company: 'Discovery Invest',
+    location: 'Cape Town, South Africa',
+    period: 'Present',
+    description: 'Design system enhancements, map processes, and write functional specifications to BABOK3 standards — working at the intersection of business strategy and technology inside one of South Africa\'s most sophisticated enterprise environments. The gap between a good idea and a working product is almost always a communication problem; this is the gap I close.',
+    skills: ['Business Analysis', 'Stakeholder Management', 'Requirements & Specs', 'BABOK3', 'Process Mapping'],
   },
   {
-    title: 'Senior Engineer, Platform',
-    company: 'A large consumer technology company',
-    location: 'Remote',
-    period: '2020 — 2023',
-    description: 'Led the platform work under a product surface used by tens of millions. Ran a small, quiet team that shipped without ceremony. Learned that the plan is worth the hour and worth throwing out by noon.',
-    skills: ['Distributed Systems', 'Reliability', 'Team Leadership', 'Roadmapping', 'Mentorship'],
+    title: 'Java Developer',
+    company: 'Discovery Insure',
+    location: 'Cape Town, South Africa',
+    period: 'Prior to Discovery Invest',
+    description: 'Started as a Java developer, which means I understand how software gets built from the inside. That technical fluency, combined with the business thinking that came later, is the unusual combination that makes the analysis work land differently.',
+    skills: ['Java', 'PL/SQL', 'Software Development'],
   },
-  {
-    title: 'Engineer, Quantitative Research',
-    company: 'A market-making firm',
-    location: 'New York, NY',
-    period: '2017 — 2020',
-    description: 'Wrote and ran the tools around the models — pattern discovery, backtesting, and the unglamorous work of trusting a signal. Kept a private notebook that eventually became the beginnings of this page.',
-    skills: ['Pattern Analysis', 'Backtesting', 'Data Pipelines', 'Statistics', 'Python / C++'],
-  },
-  {
-    title: 'Software Engineer',
-    company: 'An early-stage startup',
-    location: 'San Francisco, CA',
-    period: '2015 — 2017',
-    description: 'Full-stack work on a small team. Learned to build the whole thing, learned when not to, and learned to write short weekly notes that a founder would actually read.',
-    skills: ['Full-Stack', 'Product Engineering', 'Prototyping', 'Writing for Founders'],
-  },
-  {
-    title: 'Research Assistant',
-    company: 'A university systems lab',
-    location: 'Cambridge, MA',
-    period: '2013 — 2015',
-    description: 'Studied schedulers, contention, and the strange politeness of well-behaved systems. First serious writing done for a reader other than a compiler.',
-    skills: ['Operating Systems', 'Concurrency', 'Academic Writing', 'Instrumentation'],
-  },
+]
+
+const recognitions = [
+  { label: 'Best Paper', event: 'ACIS 2024 International Conference' },
+  { label: 'Top 3', event: 'Discovery GradHack 2023' },
 ]
 
 const fadeInUp = {
@@ -71,7 +52,7 @@ export function Work() {
         <div className="space-y-0">
           {experiences.map((exp, index) => (
             <motion.article
-              key={exp.company + exp.period}
+              key={exp.company + exp.title}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
@@ -120,7 +101,17 @@ export function Work() {
           ))}
           <div className="border-t border-gray-800" />
         </div>
+
+        {/* Recognition */}
+        <motion.div {...fadeInUp} className="mt-12 lg:mt-16 flex flex-wrap gap-x-10 gap-y-3">
+          {recognitions.map((r) => (
+            <p key={r.event} className="text-sm text-gray-500">
+              <span className="text-gray-300">🏆 {r.label}</span> — {r.event}
+            </p>
+          ))}
+        </motion.div>
       </div>
     </section>
   )
 }
+

@@ -6,7 +6,7 @@ import { Skills } from '@/components/Skills'
 import { Work } from '@/components/Work'
 import { Education } from '@/components/Education'
 import { Writing } from '@/components/Writing'
-import { Speaking } from '@/components/Speaking'
+import { Signal } from '@/components/Signal'
 import { Contact } from '@/components/Contact'
 
 const Index = () => {
@@ -20,7 +20,7 @@ const Index = () => {
       <Work />
       <Education />
       <Writing />
-      <Speaking />
+      <Signal />
       <Contact />
     </div>
   )

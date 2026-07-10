@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion'
 
 const contacts = [
-  { label: 'LEAVE A TIP', type: 'link', link: '#' },
-  { label: 'READ THE FEATURED ESSAY', type: 'link', link: '#' },
+  { label: 'LEAVE A TIP', type: 'link', link: 'https://ko-fi.com/dylansebastian' },
+  { label: 'READ THE FEATURED ESSAY', type: 'link', link: '#writing' },
 ]
 
 const fadeInUp = {
