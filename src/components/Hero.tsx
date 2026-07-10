@@ -1,6 +1,18 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 
 export function Hero() {
+  const [email, setEmail] = useState('')
+  const [submitted, setSubmitted] = useState(false)
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!email) return
+    // TODO: wire to a real provider (Buttondown, ConvertKit, Substack, etc.)
+    // This currently just confirms in the UI — no email is actually captured yet.
+    setSubmitted(true)
+  }
+
   return (
     <section className="relative h-screen w-full overflow-hidden">
       {/* Background Image - Responsive */}
@@ -37,9 +49,41 @@ export function Hero() {
             >
               A field notebook from a software engineer and writer — on AI systems, patterns in markets and code, and the quieter decisions of a life. Plan diligently, hold it loosely.
             </motion.p>
+
+            {/* Newsletter signup */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.75, duration: 0.8 }}
+              className="mt-6 md:mt-8 max-w-sm md:max-w-md"
+            >
+              {submitted ? (
+                <p className="text-sm text-white/80">
+                  You're on the list — thank you.
+                </p>
+              ) : (
+                <form onSubmit={handleSubmit} className="flex gap-2">
+                  <input
+                    type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Get new essays by email"
+                    className="flex-1 bg-white/10 border border-white/25 text-white placeholder:text-white/50 text-sm px-4 py-2.5 backdrop-blur-sm focus:outline-none focus:border-white/60 transition-colors"
+                  />
+                  <button
+                    type="submit"
+                    className="shrink-0 bg-white text-black text-sm font-medium px-4 py-2.5 hover:bg-white/85 transition-colors"
+                  >
+                    Sign up
+                  </button>
+                </form>
+              )}
+            </motion.div>
           </motion.div>
         </div>
       </div>
     </section>
   )
 }
+
