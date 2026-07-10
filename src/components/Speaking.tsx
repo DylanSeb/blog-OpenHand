@@ -21,7 +21,7 @@ const talks = [
   },
   {
     title: 'On shipping quietly',
-    event: 'A small founders' salon',
+    event: "A small founders' salon",
     year: '2023',
     link: '#',
   },
