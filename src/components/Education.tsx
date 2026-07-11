@@ -9,12 +9,12 @@ const fadeInUp = {
 
 export function Education() {
   return (
-    <section id="education" className="section-padding bg-[#0d0d0d]">
+    <section id="education" className="section-padding bg-gray-50 dark:bg-[#0d0d0d]">
       <div className="max-w-7xl mx-auto">
         {/* Section Title */}
         <motion.div {...fadeInUp} className="mb-16">
           <span className="text-sm text-gray-500 tracking-widest uppercase">Background</span>
-          <div className="w-6 h-px bg-gray-600 mt-2" />
+          <div className="w-6 h-px bg-gray-400 dark:bg-gray-600 mt-2" />
         </motion.div>
 
         <motion.h2
@@ -43,10 +43,10 @@ export function Education() {
             className="flex items-center"
           >
             <div>
-              <h3 className="text-xl lg:text-2xl font-light text-white mb-4">
+              <h3 className="text-xl lg:text-2xl font-light text-gray-900 dark:text-white mb-4">
                 Honours, Business Science — Information Systems
               </h3>
-              <p className="text-gray-400 leading-relaxed mb-4 text-sm lg:text-base">
+              <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-4 text-sm lg:text-base">
                 Built a foundation in the latest technology trends and their practical
                 application to business. Worked with OneClick Solutions, a UCT sponsor,
                 developing a working web system for the aggregation and collation of

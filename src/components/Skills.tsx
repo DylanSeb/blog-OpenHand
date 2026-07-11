@@ -20,12 +20,12 @@ const fadeInUp = {
 
 export function Skills() {
   return (
-    <section id="skills" className="section-padding bg-[#0d0d0d]">
+    <section id="skills" className="section-padding bg-gray-50 dark:bg-[#0d0d0d]">
       <div className="max-w-7xl mx-auto">
         {/* Section Title */}
         <motion.div {...fadeInUp} className="mb-16">
           <span className="text-sm text-gray-500 tracking-widest uppercase">What I Practice</span>
-          <div className="w-6 h-px bg-gray-600 mt-2" />
+          <div className="w-6 h-px bg-gray-400 dark:bg-gray-600 mt-2" />
         </motion.div>
 
         <motion.h2
@@ -44,9 +44,9 @@ export function Skills() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="border-b border-gray-800 pb-4"
+              className="border-b border-gray-200 dark:border-gray-800 pb-4"
             >
-              <span className="text-lg md:text-xl lg:text-2xl text-gray-300 font-light">
+              <span className="text-lg md:text-xl lg:text-2xl text-gray-700 dark:text-gray-300 font-light">
                 {skill}
               </span>
             </motion.div>

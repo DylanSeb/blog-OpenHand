@@ -41,7 +41,7 @@ export function Writing() {
         {/* Section Title */}
         <motion.div {...fadeInUp} className="mb-16">
           <span className="text-sm text-gray-500 tracking-widest uppercase">Essays & Notes</span>
-          <div className="w-6 h-px bg-gray-600 mt-2" />
+          <div className="w-6 h-px bg-gray-400 dark:bg-gray-600 mt-2" />
         </motion.div>
 
         <motion.h2
@@ -61,22 +61,22 @@ export function Writing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="block border-t border-gray-800 py-6 md:py-8 group hover:bg-gray-900/30 transition-colors px-4 -mx-4"
+              className="block border-t border-gray-200 dark:border-gray-800 py-6 md:py-8 group hover:bg-gray-100 dark:hover:bg-gray-900/30 transition-colors px-4 -mx-4"
             >
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4">
                 <div>
-                  <h3 className="text-lg md:text-xl lg:text-2xl text-white font-light group-hover:text-gray-300 transition-colors">
+                  <h3 className="text-lg md:text-xl lg:text-2xl text-gray-900 dark:text-white font-light group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors">
                     {article.title}
                   </h3>
                   <p className="text-sm text-gray-500 mt-1 md:mt-2">
                     Essay — {article.publication}
                   </p>
                 </div>
-                <span className="text-sm text-gray-600">{article.year}</span>
+                <span className="text-sm text-gray-500">{article.year}</span>
               </div>
             </motion.a>
           ))}
-          <div className="border-t border-gray-800" />
+          <div className="border-t border-gray-200 dark:border-gray-800" />
         </div>
       </div>
     </section>

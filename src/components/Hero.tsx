@@ -1,7 +1,11 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import { useTheme } from '@/contexts/ThemeContext'
+import { ThemeToggle } from '@/components/ThemeToggle'
 
 export function Hero() {
+  const { theme } = useTheme()
+  const isLight = theme === 'light'
   const [email, setEmail] = useState('')
   const [submitted, setSubmitted] = useState(false)
 
@@ -15,15 +19,19 @@ export function Hero() {
 
   return (
     <section className="relative h-screen w-full overflow-hidden">
-      {/* Background Image - Responsive */}
+      {/* Background Image - swaps with theme */}
       <div className="absolute inset-0 w-full h-full">
         <img
-          src="/hero-image.jpg"
+          src={isLight ? '/Lbanner.png' : '/Dbanner.png'}
           alt="Open Hand"
           className="w-full h-full object-cover object-center"
         />
-        {/* Dark overlay for better text readability */}
-        <div className="absolute inset-0 bg-black/40 md:bg-black/30" />
+        {!isLight && <div className="absolute inset-0 bg-black/40 md:bg-black/30" />}
+      </div>
+
+      {/* Theme toggle - top right, below the fixed nav's own top-right row */}
+      <div className="absolute top-20 right-6 md:top-28 md:right-10 z-30">
+        <ThemeToggle />
       </div>
 
       {/* Content */}
@@ -35,17 +43,23 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
           >
-            <h1 className="font-display leading-none tracking-tighter text-[15vw] sm:text-[12vw] md:text-hero">
-              <span className="block text-white">OPEN</span>
-              <span className="block text-white">HAND</span>
-              <span className="block text-white">ESSAYS</span>
+            <h1
+              className={`font-display leading-none tracking-tighter text-[15vw] sm:text-[12vw] md:text-hero transition-colors duration-300 ${
+                isLight ? 'text-gray-800' : 'text-white'
+              }`}
+            >
+              <span className="block">OPEN</span>
+              <span className="block">HAND</span>
+              <span className="block">ESSAYS</span>
             </h1>
 
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.8 }}
-              className="mt-6 md:mt-8 text-sm sm:text-base text-white/80 max-w-sm md:max-w-md leading-relaxed"
+              className={`mt-6 md:mt-8 text-sm sm:text-base max-w-sm md:max-w-md leading-relaxed transition-colors duration-300 ${
+                isLight ? 'text-gray-600' : 'text-white/80'
+              }`}
             >
               A field notebook from a software engineer and writer — on AI systems, patterns in markets and code, and the quieter decisions of a life. Plan diligently, hold it loosely.
             </motion.p>
@@ -58,7 +72,7 @@ export function Hero() {
               className="mt-6 md:mt-8 max-w-sm md:max-w-md"
             >
               {submitted ? (
-                <p className="text-sm text-white/80">
+                <p className={`text-sm ${isLight ? 'text-gray-600' : 'text-white/80'}`}>
                   You're on the list — thank you.
                 </p>
               ) : (
@@ -69,11 +83,19 @@ export function Hero() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Get new essays by email"
-                    className="flex-1 bg-white/10 border border-white/25 text-white placeholder:text-white/50 text-sm px-4 py-2.5 backdrop-blur-sm focus:outline-none focus:border-white/60 transition-colors"
+                    className={`flex-1 text-sm px-4 py-2.5 backdrop-blur-sm transition-colors focus:outline-none ${
+                      isLight
+                        ? 'bg-black/5 border border-gray-400 text-gray-800 placeholder:text-gray-500 focus:border-gray-800'
+                        : 'bg-white/10 border border-white/25 text-white placeholder:text-white/50 focus:border-white/60'
+                    }`}
                   />
                   <button
                     type="submit"
-                    className="shrink-0 bg-white text-black text-sm font-medium px-4 py-2.5 hover:bg-white/85 transition-colors"
+                    className={`shrink-0 text-sm font-medium px-4 py-2.5 transition-colors ${
+                      isLight
+                        ? 'bg-gray-800 text-white hover:bg-gray-700'
+                        : 'bg-white text-black hover:bg-white/85'
+                    }`}
                   >
                     Sign up
                   </button>
@@ -86,4 +108,5 @@ export function Hero() {
     </section>
   )
 }
+
 
