@@ -3,6 +3,7 @@ import { useActiveSection } from '@/hooks/useActiveSection'
 import { useScrollVisibility } from '@/hooks/useScrollVisibility'
 import { cn } from '@/lib/utils'
 import { ThemeToggle } from '@/components/ThemeToggle'
+import { useTheme } from '@/contexts/ThemeContext'
 
 const navItems = [
   { id: 'about', label: 'About' },
@@ -24,9 +25,13 @@ const socialLinks = [
 ]
 
 export function Navigation() {
+  const { theme } = useTheme()
+  const isLight = theme === 'light'
   const activeSection = useActiveSection()
   const isVisible = useScrollVisibility()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const navigationTextColor = isLight ? 'text-white' : 'text-black'
+  const activeUnderlineColor = isLight ? 'after:bg-white' : 'after:bg-black'
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
@@ -44,7 +49,7 @@ export function Navigation() {
         <div className="relative">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="text-sm text-white mix-blend-difference"
+            className={cn('text-sm transition-colors', navigationTextColor)}
           >
             {mobileMenuOpen ? 'Close' : 'Menu'}
           </button>
@@ -61,9 +66,10 @@ export function Navigation() {
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
                 className={cn(
-                  'text-sm text-white mix-blend-difference transition-all duration-300 relative py-1',
+                  'text-sm transition-all duration-300 relative py-1',
+                  navigationTextColor,
                   'hover:opacity-60',
-                  activeSection === item.id && 'after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-white'
+                  activeSection === item.id && cn('after:absolute after:bottom-0 after:left-0 after:w-full after:h-px', activeUnderlineColor)
                 )}
               >
                 {item.label}
@@ -80,7 +86,7 @@ export function Navigation() {
               href={link.href}
               target={link.href.startsWith('mailto') ? undefined : '_blank'}
               rel={link.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
-              className="text-sm text-white mix-blend-difference hover:opacity-60 transition-opacity"
+              className={cn('text-sm hover:opacity-60 transition-opacity', navigationTextColor)}
             >
               {link.label}
             </a>
@@ -98,7 +104,7 @@ export function Navigation() {
               href={link.href}
               target={link.href.startsWith('mailto') ? undefined : '_blank'}
               rel={link.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
-              className="text-sm text-white mix-blend-difference hover:opacity-60 transition-opacity"
+              className={cn('text-sm hover:opacity-60 transition-opacity', navigationTextColor)}
             >
               {link.label}
             </a>
@@ -120,9 +126,10 @@ export function Navigation() {
               key={item.id}
               onClick={() => scrollToSection(item.id)}
               className={cn(
-                'text-sm text-white mix-blend-difference transition-all duration-300 relative py-1',
+                'text-sm transition-all duration-300 relative py-1',
+                navigationTextColor,
                 'hover:opacity-60',
-                activeSection === item.id && 'after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-white'
+                activeSection === item.id && cn('after:absolute after:bottom-0 after:left-0 after:w-full after:h-px', activeUnderlineColor)
               )}
             >
               {item.label}

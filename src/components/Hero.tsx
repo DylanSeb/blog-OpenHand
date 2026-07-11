@@ -100,7 +100,8 @@ export function Hero() {
           >
             {/* Title */}
             <h1 className={`font-display leading-none tracking-tighter transition-colors duration-300 ${titleColor}`}>
-              <span className="block text-[15vw] sm:text-[12vw] md:text-hero">OPEN HAND</span>
+              <span className="block text-[15vw] sm:text-[12vw] md:text-hero">OPEN</span>
+              <span className="block text-[15vw] sm:text-[12vw] md:text-hero">HAND</span>
               <span className="block font-bold text-[5vw] sm:text-[3.5vw] md:text-3xl mt-2 md:mt-4">
                 by Dylan Sebastian
               </span>
