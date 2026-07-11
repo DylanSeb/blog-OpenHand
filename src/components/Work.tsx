@@ -38,7 +38,7 @@ export function Work() {
         {/* Section Title */}
         <motion.div {...fadeInUp} className="mb-16">
           <span className="text-sm text-gray-500 tracking-widest uppercase">Working Life</span>
-          <div className="w-6 h-px bg-gray-600 mt-2" />
+          <div className="w-6 h-px bg-gray-400 dark:bg-gray-600 mt-2" />
         </motion.div>
 
         <motion.h2
@@ -57,18 +57,18 @@ export function Work() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.8, ease: 'easeOut', delay: index * 0.1 }}
-              className="border-t border-gray-800 py-8 md:py-12 lg:py-16 group"
+              className="border-t border-gray-200 dark:border-gray-800 py-8 md:py-12 lg:py-16 group"
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
                 {/* Left Column - Title & Company */}
                 <div className="lg:col-span-5">
-                  <h3 className="text-xl md:text-2xl lg:text-3xl font-light text-white mb-2">
+                  <h3 className="text-xl md:text-2xl lg:text-3xl font-light text-gray-900 dark:text-white mb-2">
                     {exp.title}
                   </h3>
-                  <p className="text-base lg:text-lg text-gray-400">
+                  <p className="text-base lg:text-lg text-gray-600 dark:text-gray-400">
                     {exp.company}
                   </p>
-                  <p className="text-sm text-gray-600 mt-2">
+                  <p className="text-sm text-gray-500 mt-2">
                     {exp.location}
                   </p>
                 </div>
@@ -82,14 +82,14 @@ export function Work() {
 
                 {/* Right Column - Description & Skills */}
                 <div className="lg:col-span-5">
-                  <p className="text-gray-400 leading-relaxed mb-6 text-sm lg:text-base">
+                  <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-6 text-sm lg:text-base">
                     {exp.description}
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {exp.skills.map((skill) => (
                       <span
                         key={skill}
-                        className="px-3 py-1 text-xs text-gray-500 border border-gray-800 rounded-full"
+                        className="px-3 py-1 text-xs text-gray-500 border border-gray-200 dark:border-gray-800 rounded-full"
                       >
                         {skill}
                       </span>
@@ -99,14 +99,14 @@ export function Work() {
               </div>
             </motion.article>
           ))}
-          <div className="border-t border-gray-800" />
+          <div className="border-t border-gray-200 dark:border-gray-800" />
         </div>
 
         {/* Recognition */}
         <motion.div {...fadeInUp} className="mt-12 lg:mt-16 flex flex-wrap gap-x-10 gap-y-3">
           {recognitions.map((r) => (
             <p key={r.event} className="text-sm text-gray-500">
-              <span className="text-gray-300">🏆 {r.label}</span> — {r.event}
+              <span className="text-gray-700 dark:text-gray-300">🏆 {r.label}</span> — {r.event}
             </p>
           ))}
         </motion.div>

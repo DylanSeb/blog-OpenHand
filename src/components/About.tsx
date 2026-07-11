@@ -14,7 +14,7 @@ export function About() {
         {/* Section Label */}
         <motion.div {...fadeInUp} className="mb-16">
           <span className="text-sm text-gray-500 tracking-widest uppercase">About</span>
-          <div className="w-6 h-px bg-gray-600 mt-2" />
+          <div className="w-6 h-px bg-gray-400 dark:bg-gray-600 mt-2" />
         </motion.div>
 
         {/* First Block */}
@@ -38,7 +38,7 @@ export function About() {
             transition={{ ...fadeInUp.transition, delay: 0.2 }}
             className="order-1 lg:order-2 flex items-center"
           >
-            <p className="text-base lg:text-lg text-gray-300 leading-relaxed">
+            <p className="text-base lg:text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
               I work by day in AI systems and study patterns by habit — in code, in
               markets, in the small decisions that compound into a life. This page is a
               slow room. I publish when the thinking is done, not when the week is out.
@@ -51,9 +51,9 @@ export function About() {
           {...fadeInUp}
           className="mb-24 lg:mb-32"
         >
-          <h2 className="font-display text-[8vw] lg:text-section leading-none tracking-tight text-gray-300">
+          <h2 className="font-display text-[8vw] lg:text-section leading-none tracking-tight text-gray-600 dark:text-gray-300">
             "PLAN DILIGENTLY,<br />
-            <span className="text-white underline underline-offset-8">HOLD IT LOOSELY.</span><br />
+            <span className="text-gray-900 dark:text-white underline underline-offset-8">HOLD IT LOOSELY.</span><br />
             THE ENGINEERS I TRUST<br />
             ARE RUTHLESS WITH PLANS<br />
             AND GENTLE WITH OUTCOMES."
@@ -70,7 +70,7 @@ export function About() {
             {...fadeInUp}
             className="flex items-center lg:text-right"
           >
-            <p className="text-base lg:text-lg text-gray-300 leading-relaxed">
+            <p className="text-base lg:text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
               Everything here is written by hand. No newsletter cadence, no takes for
               their own sake — just pieces held long enough to be worth reading twice.
               There is no paywall. If a piece was worth your morning, the support card
@@ -112,7 +112,7 @@ export function About() {
             transition={{ ...fadeInUp.transition, delay: 0.2 }}
             className="flex items-center"
           >
-            <p className="text-base lg:text-lg text-gray-300 leading-relaxed">
+            <p className="text-base lg:text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
               The through-line across the essays is the same tension I live at work:
               commit fully to a shape, and, when the shape asks to become something
               else, let it. Markets teach this expensively. So does writing anything
