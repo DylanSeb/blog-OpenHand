@@ -30,7 +30,7 @@ export function Hero() {
         <img
           src={isLight ? '/Lbanner.png' : '/Dbanner.png'}
           alt="Open Hand"
-          className="w-full h-full object-cover object-center scale-[2.2]"
+          className="w-full h-full object-contain object-center"
         />
         {!isLight && <div className="absolute inset-0 bg-black/40 md:bg-black/30" />}
       </div>
@@ -41,11 +41,11 @@ export function Hero() {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.7 }}
-          className="relative rounded-full backdrop-blur-xl shadow-lg overflow-hidden transition-colors duration-300"
+          className="relative rounded-full backdrop-blur-sm shadow-lg overflow-hidden transition-colors duration-300"
           style={
             isLight
-              ? { backgroundColor: 'rgba(255,255,255,0.55)', boxShadow: '0 4px 24px rgba(0,0,0,0.12)' }
-              : { backgroundColor: 'rgba(255,255,255,0.14)', boxShadow: '0 4px 24px rgba(0,0,0,0.25)' }
+              ? { backgroundColor: 'rgba(255,255,255,0.45)', boxShadow: '0 4px 24px rgba(0,0,0,0.12)' }
+              : { backgroundColor: 'rgba(255,255,255,0.10)', boxShadow: '0 4px 24px rgba(0,0,0,0.25)' }
           }
         >
           {/* subtle top specular highlight, the "liquid glass" touch */}
