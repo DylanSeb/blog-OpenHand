@@ -30,8 +30,8 @@ export function Navigation() {
   const activeSection = useActiveSection()
   const isVisible = useScrollVisibility()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const navigationTextColor = isLight ? 'text-white' : 'text-black'
-  const activeUnderlineColor = isLight ? 'after:bg-white' : 'after:bg-black'
+  const navigationTextColor = isLight ? 'text-black' : 'text-white'
+  const activeUnderlineColor = isLight ? 'after:bg-black' : 'after:bg-white'
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
