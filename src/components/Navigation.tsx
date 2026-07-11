@@ -2,20 +2,24 @@ import { useState } from 'react'
 import { useActiveSection } from '@/hooks/useActiveSection'
 import { useScrollVisibility } from '@/hooks/useScrollVisibility'
 import { cn } from '@/lib/utils'
+import { ThemeToggle } from '@/components/ThemeToggle'
 
 const navItems = [
   { id: 'about', label: 'About' },
-  { id: 'skills', label: 'Skills' },
-  { id: 'work', label: 'Work' },
-  { id: 'education', label: 'Education' },
   { id: 'writing', label: 'Writing' },
   { id: 'signal', label: 'Signal' },
+  { id: 'work', label: 'Work' },
+  { id: 'education', label: 'Education' },
+  { id: 'ideas', label: 'Ideas' },
 ]
 
+// Labels only renamed for now — hrefs still point at their original
+// destinations (Projects -> mailto, MailMe -> '#', Proverbs16 -> bsky.app).
+// Update these once real destinations are decided.
 const socialLinks = [
-  { label: 'Mail', href: 'mailto:hello@openhand.page' },
-  { label: 'RSS', href: '#' },
-  { label: 'Bluesky', href: 'https://bsky.app' },
+  { label: 'Projects', href: 'mailto:hello@openhand.page' },
+  { label: 'MailMe', href: '#' },
+  { label: 'Proverbs16', href: 'https://bsky.app' },
 ]
 
 export function Navigation() {
@@ -80,6 +84,7 @@ export function Navigation() {
               {link.label}
             </a>
           ))}
+          <ThemeToggle />
         </div>
       </div>
 
@@ -97,6 +102,7 @@ export function Navigation() {
               {link.label}
             </a>
           ))}
+          <ThemeToggle />
         </div>
       </div>
 

@@ -2,11 +2,11 @@ import { Navigation } from '@/components/Navigation'
 import { GrainOverlay } from '@/components/GrainOverlay'
 import { Hero } from '@/components/Hero'
 import { About } from '@/components/About'
-import { Skills } from '@/components/Skills'
-import { Work } from '@/components/Work'
-import { Education } from '@/components/Education'
 import { Writing } from '@/components/Writing'
 import { Signal } from '@/components/Signal'
+import { Work } from '@/components/Work'
+import { Education } from '@/components/Education'
+import { Ideas } from '@/components/Ideas'
 import { Contact } from '@/components/Contact'
 
 const Index = () => {
@@ -16,11 +16,11 @@ const Index = () => {
       <Navigation />
       <Hero />
       <About />
-      <Skills />
-      <Work />
-      <Education />
       <Writing />
       <Signal />
+      <Work />
+      <Education />
+      <Ideas />
       <Contact />
     </div>
   )
