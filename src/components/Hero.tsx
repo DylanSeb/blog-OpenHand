@@ -40,7 +40,28 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
           >
-            {/* Newsletter signup - glass card, now at the top of the hero content */}
+            <h1
+              className={`font-display leading-none tracking-tighter text-[15vw] sm:text-[12vw] md:text-hero transition-colors duration-300 ${
+                isLight ? 'text-gray-800' : 'text-white'
+              }`}
+            >
+              <span className="block">OPEN</span>
+              <span className="block">HAND</span>
+              <span className="block">BLOG</span>
+            </h1>
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
+              className={`mt-6 md:mt-8 text-sm sm:text-base max-w-sm md:max-w-md leading-relaxed transition-colors duration-300 ${
+                isLight ? 'text-gray-600' : 'text-white/80'
+              }`}
+            >
+              A field notebook from a software engineer, business analyst and writer — on AI systems, patterns in markets and code, and the quieter decisions of a life. Plan diligently, hold it loosely.
+            </motion.p>
+
+            {/* Newsletter signup */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -63,8 +84,8 @@ export function Hero() {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Get new essays by email"
-                    className={`flex-1 bg-transparent text-sm px-3 py-2 transition-colors focus:outline-none ${
+                    placeholder="Get my newsletters by email"
+                    className={`flex-1 text-sm px-4 py-2.5 backdrop-blur-sm transition-colors focus:outline-none ${
                       isLight
                         ? 'text-gray-800 placeholder:text-gray-600'
                         : 'text-white placeholder:text-white/60'
