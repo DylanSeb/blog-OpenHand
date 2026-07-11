@@ -50,7 +50,7 @@ export function Hero() {
             >
               <span className="block">OPEN</span>
               <span className="block">HAND</span>
-              <span className="block">ESSAYS</span>
+              <span className="block">BLOG</span>
             </h1>
 
             <motion.p
@@ -61,7 +61,7 @@ export function Hero() {
                 isLight ? 'text-gray-600' : 'text-white/80'
               }`}
             >
-              A field notebook from a software engineer and writer — on AI systems, patterns in markets and code, and the quieter decisions of a life. Plan diligently, hold it loosely.
+              A field notebook from a software engineer, business analyst and writer — on AI systems, patterns in markets and code, and the quieter decisions of a life. Plan diligently, hold it loosely.
             </motion.p>
 
             {/* Newsletter signup */}
@@ -82,7 +82,7 @@ export function Hero() {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Get new essays by email"
+                    placeholder="Get my newsletters by email"
                     className={`flex-1 text-sm px-4 py-2.5 backdrop-blur-sm transition-colors focus:outline-none ${
                       isLight
                         ? 'bg-black/5 border border-gray-400 text-gray-800 placeholder:text-gray-500 focus:border-gray-800'
