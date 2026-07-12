@@ -1,5 +1,5 @@
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
-import { Search } from 'lucide-react'
+import { Search, X } from 'lucide-react'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useTheme } from '@/contexts/ThemeContext'
 
@@ -86,36 +86,54 @@ export function FloatingFind() {
   const reduceMotion = useReducedMotion()
   const inputRef = useRef<HTMLInputElement>(null)
   const [isPastHero, setIsPastHero] = useState(false)
+  const [hasBeenRevealed, setHasBeenRevealed] = useState(false)
+  const [isDismissedInHero, setIsDismissedInHero] = useState(false)
+  const [query, setQuery] = useState('')
   const [resultCount, setResultCount] = useState(0)
   const [hasQuery, setHasQuery] = useState(false)
   const updateSearch = useCallback((value: string) => {
+    setQuery(value)
     setHasQuery(Boolean(value.trim()))
     setResultCount(highlightPage(value))
   }, [])
 
+  const closeInHero = () => {
+    setIsDismissedInHero(true)
+    updateSearch('')
+  }
+
   useEffect(() => {
     const hero = document.getElementById('hero')
     if (!hero) return
-    const observer = new IntersectionObserver(([entry]) => setIsPastHero(!entry.isIntersecting), { threshold: 0.05 })
+    const observer = new IntersectionObserver(([entry]) => {
+      const nextIsPastHero = !entry.isIntersecting
+      setIsPastHero(nextIsPastHero)
+      if (nextIsPastHero) {
+        setHasBeenRevealed(true)
+        setIsDismissedInHero(false)
+      }
+    }, { threshold: 0.05 })
     observer.observe(hero)
     return () => observer.disconnect()
   }, [])
 
+  const isVisible = isPastHero || (hasBeenRevealed && !isDismissedInHero)
+  const showCloseButton = !isPastHero
+
   useEffect(() => {
     const input = inputRef.current
-    if (!input) return clearHighlights
+    if (!input) return undefined
     const handleInput = () => updateSearch(input.value)
 
     input.addEventListener('input', handleInput)
-    return () => {
-      input.removeEventListener('input', handleInput)
-      clearHighlights()
-    }
-  }, [isPastHero, updateSearch])
+    return () => input.removeEventListener('input', handleInput)
+  }, [isVisible, updateSearch])
+
+  useEffect(() => clearHighlights, [])
 
   return (
     <AnimatePresence>
-      {isPastHero && (
+      {isVisible && (
         <motion.div
           initial={reduceMotion ? false : { opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
@@ -135,6 +153,8 @@ export function FloatingFind() {
             <input
               ref={inputRef}
               type="search"
+              value={query}
+              onChange={(event) => updateSearch(event.currentTarget.value)}
               onInput={(event) => updateSearch(event.currentTarget.value)}
               placeholder="Search"
               aria-label="Search text on this page"
@@ -143,6 +163,18 @@ export function FloatingFind() {
               }`}
             />
             {hasQuery && <span className="text-xs tabular-nums opacity-70">{resultCount}</span>}
+            {showCloseButton && (
+              <button
+                type="button"
+                onClick={closeInHero}
+                aria-label="Close search"
+                className={`grid h-6 w-6 shrink-0 place-items-center rounded-full transition-colors ${
+                  isLight ? 'text-gray-700 hover:bg-black/10' : 'text-white/80 hover:bg-white/15'
+                }`}
+              >
+                <X className="h-4 w-4" aria-hidden="true" />
+              </button>
+            )}
           </div>
         </motion.div>
       )}
