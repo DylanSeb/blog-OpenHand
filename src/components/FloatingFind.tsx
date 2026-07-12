@@ -1,9 +1,8 @@
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { Search } from 'lucide-react'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useTheme } from '@/contexts/ThemeContext'
 
-const coinWords = new Set(['money'])
 const highlightClass = 'open-hand-find-match bg-yellow-300 text-black'
 
 function escapeRegExp(value: string) {
@@ -12,18 +11,13 @@ function escapeRegExp(value: string) {
 
 function clearHighlights() {
   document.querySelectorAll<HTMLElement>('.open-hand-find-match').forEach((match) => {
+    const parent = match.parentElement
     match.replaceWith(document.createTextNode(match.dataset.originalText ?? match.textContent ?? ''))
-    match.parentElement?.normalize()
+    parent?.normalize()
   })
 }
 
-function highlightPage(query: string) {
-  clearHighlights()
-  const trimmedQuery = query.trim()
-  if (!trimmedQuery) return 0
-
-  const isCoinWord = coinWords.has(trimmedQuery.toLowerCase())
-  const expression = new RegExp(isCoinWord ? `\\b${escapeRegExp(trimmedQuery)}\\b` : escapeRegExp(trimmedQuery), 'gi')
+function getSearchableTextNodes() {
   const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
     acceptNode: (node) => {
       const parent = node.parentElement
@@ -38,29 +32,49 @@ function highlightPage(query: string) {
   const textNodes: Text[] = []
   while (walker.nextNode()) textNodes.push(walker.currentNode as Text)
 
+  return textNodes
+}
+
+function highlightMatchesInNode(node: Text, expression: RegExp) {
+  const text = node.textContent ?? ''
+  expression.lastIndex = 0
+  if (!expression.test(text)) return 0
+
+  expression.lastIndex = 0
+  const fragment = document.createDocumentFragment()
+  let cursor = 0
   let resultCount = 0
+  let match: RegExpExecArray | null
+
+  while ((match = expression.exec(text))) {
+    if (match.index > cursor) fragment.append(text.slice(cursor, match.index))
+    const originalText = match[0]
+    const highlight = document.createElement('mark')
+    highlight.className = highlightClass
+    highlight.dataset.originalText = originalText
+    highlight.textContent = originalText
+    fragment.append(highlight)
+    cursor = match.index + originalText.length
+    resultCount += 1
+  }
+
+  if (cursor < text.length) fragment.append(text.slice(cursor))
+  node.replaceWith(fragment)
+
+  return resultCount
+}
+
+function highlightPage(query: string) {
+  clearHighlights()
+  const trimmedQuery = query.trim()
+  if (!trimmedQuery) return 0
+
+  const expression = new RegExp(escapeRegExp(trimmedQuery), 'gi')
+  const textNodes = getSearchableTextNodes()
+  let resultCount = 0
+
   textNodes.forEach((node) => {
-    const text = node.textContent ?? ''
-    expression.lastIndex = 0
-    if (!expression.test(text)) return
-
-    expression.lastIndex = 0
-    const fragment = document.createDocumentFragment()
-    let cursor = 0
-    let match: RegExpExecArray | null
-    while ((match = expression.exec(text))) {
-      if (match.index > cursor) fragment.append(text.slice(cursor, match.index))
-      const highlight = document.createElement('mark')
-      highlight.className = highlightClass
-      highlight.dataset.originalText = match[0]
-      highlight.textContent = isCoinWord ? String.fromCodePoint(0x1f4b0) : match[0]
-      fragment.append(highlight)
-      cursor = match.index + match[0].length
-      resultCount += 1
-    }
-
-    if (cursor < text.length) fragment.append(text.slice(cursor))
-    node.replaceWith(fragment)
+    resultCount += highlightMatchesInNode(node, expression)
   })
 
   return resultCount
@@ -70,9 +84,14 @@ export function FloatingFind() {
   const { theme } = useTheme()
   const isLight = theme === 'light'
   const reduceMotion = useReducedMotion()
+  const inputRef = useRef<HTMLInputElement>(null)
   const [isPastHero, setIsPastHero] = useState(false)
-  const [query, setQuery] = useState('')
   const [resultCount, setResultCount] = useState(0)
+  const [hasQuery, setHasQuery] = useState(false)
+  const updateSearch = useCallback((value: string) => {
+    setHasQuery(Boolean(value.trim()))
+    setResultCount(highlightPage(value))
+  }, [])
 
   useEffect(() => {
     const hero = document.getElementById('hero')
@@ -83,9 +102,16 @@ export function FloatingFind() {
   }, [])
 
   useEffect(() => {
-    setResultCount(highlightPage(query))
-    return () => clearHighlights()
-  }, [query])
+    const input = inputRef.current
+    if (!input) return clearHighlights
+    const handleInput = () => updateSearch(input.value)
+
+    input.addEventListener('input', handleInput)
+    return () => {
+      input.removeEventListener('input', handleInput)
+      clearHighlights()
+    }
+  }, [isPastHero, updateSearch])
 
   return (
     <AnimatePresence>
@@ -107,16 +133,16 @@ export function FloatingFind() {
           >
             <Search className="h-4 w-4 shrink-0" aria-hidden="true" />
             <input
+              ref={inputRef}
               type="search"
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
+              onInput={(event) => updateSearch(event.currentTarget.value)}
               placeholder="Search"
               aria-label="Search text on this page"
               className={`min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:opacity-70 ${
                 isLight ? 'placeholder:text-gray-700' : 'placeholder:text-white/70'
               }`}
             />
-            {query.trim() && <span className="text-xs tabular-nums opacity-70">{resultCount}</span>}
+            {hasQuery && <span className="text-xs tabular-nums opacity-70">{resultCount}</span>}
           </div>
         </motion.div>
       )}
