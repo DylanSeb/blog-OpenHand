@@ -9,6 +9,7 @@ import { Work } from '@/components/Work'
 import { Education } from '@/components/Education'
 import { Ideas } from '@/components/Ideas'
 import { Contact } from '@/components/Contact'
+import { FloatingFind } from '@/components/FloatingFind'
 
 const Index = () => {
   return (
@@ -16,6 +17,7 @@ const Index = () => {
       <GrainOverlay />
       <Navigation />
       <Hero />
+      <FloatingFind />
       <About />
       <Writing />
       <Signal />

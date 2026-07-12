@@ -15,13 +15,11 @@ const navItems = [
   { id: 'ideas', label: 'Ideas' },
 ]
 
-// Labels only renamed for now — hrefs still point at their original
-// destinations (Projects -> mailto, MailMe -> '#', Proverbs16 -> bsky.app).
-// Update these once real destinations are decided.
 const socialLinks = [
-  { label: 'Projects', href: 'mailto:hello@openhand.page' },
-  { label: 'MailMe', href: '#' },
-  { label: 'Proverbs16', href: 'https://bsky.app' },
+  // Projects destination pending confirmation.
+  { label: 'Projects', href: '#projects', newTab: false },
+  { label: 'MailMe', href: 'mailto:wewahneat@gmail.com', newTab: false },
+  { label: 'Proverbs16', href: '/assets/proverbs16.txt', newTab: true },
 ]
 
 export function Navigation() {
@@ -84,8 +82,8 @@ export function Navigation() {
             <a
               key={link.label}
               href={link.href}
-              target={link.href.startsWith('mailto') ? undefined : '_blank'}
-              rel={link.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
+              target={link.newTab ? '_blank' : undefined}
+              rel={link.newTab ? 'noopener noreferrer' : undefined}
               className={cn('text-sm hover:opacity-60 transition-opacity', navigationTextColor)}
             >
               {link.label}
@@ -102,8 +100,8 @@ export function Navigation() {
             <a
               key={link.label}
               href={link.href}
-              target={link.href.startsWith('mailto') ? undefined : '_blank'}
-              rel={link.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
+              target={link.newTab ? '_blank' : undefined}
+              rel={link.newTab ? 'noopener noreferrer' : undefined}
               className={cn('text-sm hover:opacity-60 transition-opacity', navigationTextColor)}
             >
               {link.label}
@@ -114,7 +112,7 @@ export function Navigation() {
       </div>
 
       {/* Desktop Navigation Items - Fixed Bottom Right (hidden on mobile) */}
-      <nav 
+      <nav
         className={cn(
           'hidden md:block fixed bottom-0 right-0 z-50 p-6 md:p-10 transition-all duration-500',
           isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8 pointer-events-none'
