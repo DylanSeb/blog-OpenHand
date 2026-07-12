@@ -4,17 +4,39 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { useTheme } from '@/contexts/ThemeContext'
 
 const highlightClass = 'open-hand-find-match bg-yellow-300 text-black'
+const coinWords = new Set(['money', 'open', 'hand'])
+const coinClass = 'open-hand-find-match bg-transparent align-baseline text-xl leading-none'
+const phraseCoinClass = 'open-hand-find-match bg-transparent align-baseline text-3xl leading-none'
+const moneyBag = String.fromCodePoint(0x1f4b0)
 
 function escapeRegExp(value: string) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 }
 
 function clearHighlights() {
-  document.querySelectorAll<HTMLElement>('.open-hand-find-match').forEach((match) => {
+  document.querySelectorAll<HTMLElement>('.open-hand-find-match, .open-hand-find-restore').forEach((match) => {
     const parent = match.parentElement
     match.replaceWith(document.createTextNode(match.dataset.originalText ?? match.textContent ?? ''))
     parent?.normalize()
   })
+}
+
+function createReplacement(originalText: string, displayText: string, className: string) {
+  const replacement = document.createElement('mark')
+  replacement.className = className
+  replacement.dataset.originalText = originalText
+  replacement.textContent = displayText
+
+  return replacement
+}
+
+function createRestoreMarker(originalText: string) {
+  const marker = document.createElement('span')
+  marker.className = 'open-hand-find-restore hidden'
+  marker.dataset.originalText = originalText
+  marker.setAttribute('aria-hidden', 'true')
+
+  return marker
 }
 
 function getSearchableTextNodes() {
@@ -49,11 +71,7 @@ function highlightMatchesInNode(node: Text, expression: RegExp) {
   while ((match = expression.exec(text))) {
     if (match.index > cursor) fragment.append(text.slice(cursor, match.index))
     const originalText = match[0]
-    const highlight = document.createElement('mark')
-    highlight.className = highlightClass
-    highlight.dataset.originalText = originalText
-    highlight.textContent = originalText
-    fragment.append(highlight)
+    fragment.append(createReplacement(originalText, originalText, highlightClass))
     cursor = match.index + originalText.length
     resultCount += 1
   }
@@ -64,18 +82,89 @@ function highlightMatchesInNode(node: Text, expression: RegExp) {
   return resultCount
 }
 
+function replaceCoinMatchesInNode(node: Text, expression: RegExp, className: string) {
+  const text = node.textContent ?? ''
+  expression.lastIndex = 0
+  if (!expression.test(text)) return 0
+
+  expression.lastIndex = 0
+  const fragment = document.createDocumentFragment()
+  let cursor = 0
+  let resultCount = 0
+  let match: RegExpExecArray | null
+
+  while ((match = expression.exec(text))) {
+    if (match.index > cursor) fragment.append(text.slice(cursor, match.index))
+    const originalText = match[0]
+    fragment.append(createReplacement(originalText, moneyBag, className))
+    cursor = match.index + originalText.length
+    resultCount += 1
+  }
+
+  if (cursor < text.length) fragment.append(text.slice(cursor))
+  node.replaceWith(fragment)
+
+  return resultCount
+}
+
+function replaceSplitOpenHandPhrase(textNodes: Text[]) {
+  let resultCount = 0
+
+  for (let index = 0; index < textNodes.length - 1; index += 1) {
+    const openNode = textNodes[index]
+    const handNode = textNodes[index + 1]
+    const openText = openNode.textContent ?? ''
+    const handText = handNode.textContent ?? ''
+    const openMatch = openText.match(/\bopen\s*$/i)
+    const handMatch = handText.match(/^\s*hand\b/i)
+
+    if (!openMatch || !handMatch || !openNode.isConnected || !handNode.isConnected) continue
+
+    const openStart = openMatch.index ?? 0
+    const beforeOpen = openText.slice(0, openStart)
+    const afterHand = handText.slice(handMatch[0].length)
+    const openFragment = document.createDocumentFragment()
+    const handFragment = document.createDocumentFragment()
+
+    if (beforeOpen) openFragment.append(beforeOpen)
+    openFragment.append(createReplacement(openMatch[0], moneyBag, phraseCoinClass))
+    handFragment.append(createRestoreMarker(handMatch[0]))
+    if (afterHand) handFragment.append(afterHand)
+
+    openNode.replaceWith(openFragment)
+    handNode.replaceWith(handFragment)
+    resultCount += 1
+  }
+
+  return resultCount
+}
+
 function highlightPage(query: string) {
   clearHighlights()
   const trimmedQuery = query.trim()
   if (!trimmedQuery) return 0
 
-  const expression = new RegExp(escapeRegExp(trimmedQuery), 'gi')
+  const normalizedQuery = trimmedQuery.toLowerCase()
+  const isOpenHandPhrase = normalizedQuery === 'open hand'
+  const isCoinWord = coinWords.has(normalizedQuery)
+  const expression = new RegExp(
+    isOpenHandPhrase
+      ? '\\bopen\\s+hand\\b'
+      : isCoinWord
+        ? `\\b${escapeRegExp(trimmedQuery)}\\b`
+        : escapeRegExp(trimmedQuery),
+    'gi',
+  )
   const textNodes = getSearchableTextNodes()
   let resultCount = 0
 
   textNodes.forEach((node) => {
-    resultCount += highlightMatchesInNode(node, expression)
+    resultCount += isCoinWord || isOpenHandPhrase
+      ? replaceCoinMatchesInNode(node, expression, isOpenHandPhrase ? phraseCoinClass : coinClass)
+      : highlightMatchesInNode(node, expression)
   })
+
+  if (isOpenHandPhrase) resultCount += replaceSplitOpenHandPhrase(getSearchableTextNodes())
 
   return resultCount
 }
