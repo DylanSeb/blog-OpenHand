@@ -84,7 +84,7 @@ export function Hero() {
                 isLight ? 'text-gray-600' : 'text-white/80'
               }`}
             >
-              I don't wait until I'm sure to write. Still learning to hold things with an open hand &mdash; right now, that's:{' '}
+              Still learning to hold things with an open hand; Right now, that's:{' '}
               <a
                 href={currentHeroPost.href}
                 className="underline decoration-current/30 underline-offset-4 transition-opacity hover:opacity-70"

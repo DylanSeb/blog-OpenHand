@@ -175,6 +175,7 @@ export function FloatingFind() {
   const reduceMotion = useReducedMotion()
   const inputRef = useRef<HTMLInputElement>(null)
   const [isPastHero, setIsPastHero] = useState(false)
+  const [isInSupport, setIsInSupport] = useState(false)
   const [hasBeenRevealed, setHasBeenRevealed] = useState(false)
   const [isDismissedInHero, setIsDismissedInHero] = useState(false)
   const [query, setQuery] = useState('')
@@ -206,7 +207,19 @@ export function FloatingFind() {
     return () => observer.disconnect()
   }, [])
 
-  const isVisible = isPastHero || (hasBeenRevealed && !isDismissedInHero)
+  useEffect(() => {
+    const contact = document.getElementById('contact')
+    if (!contact) return
+
+    const observer = new IntersectionObserver(([entry]) => {
+      setIsInSupport(entry.isIntersecting)
+    }, { threshold: 0.35 })
+
+    observer.observe(contact)
+    return () => observer.disconnect()
+  }, [])
+
+  const isVisible = !isInSupport && (isPastHero || (hasBeenRevealed && !isDismissedInHero))
   const showCloseButton = !isPastHero
 
   useEffect(() => {
