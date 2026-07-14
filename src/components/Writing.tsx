@@ -48,7 +48,7 @@ export function Writing() {
           {...fadeInUp}
           className="font-display text-[10vw] lg:text-section leading-none tracking-tight mb-16 lg:mb-24"
         >
-          WRITING
+          HOLDING SPACE
         </motion.h2>
 
         {/* Articles List */}

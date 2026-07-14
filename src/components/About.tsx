@@ -157,17 +157,25 @@ export function About() {
               <p>
                 I spent years inside enterprise systems as a developer, then moved to
                 the side of the table where you decide what gets built and why. That
-                shift changes how you see a problem - less "how do I write this," more
-                "what's actually going on here, and what pattern is this."
+                shift changes how you see a problem. Less "how do I write this?" more
+                "what's actually going on here, and what pattern is this?"
               </p>
               <p>
-                Four and a half years ago I wrote my Honours thesis on how university
-                students were already absorbing ChatGPT into daily life, faster than
-                most institutions had noticed. I was watching that shift up close before
-                most people had settled on an opinion about it. Computers took decades
-                to become the phone in your pocket. AI is running that same evolution on
-                a compressed timeline - and I'd rather be building with it than debating
-                what it is.
+                Four and a half years ago I wrote{' '}
+                <a
+                  href="https://aisel.aisnet.org/acis2024/117/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline underline-offset-4 transition-opacity hover:opacity-70"
+                >
+                  my Honours thesis
+                </a>{' '}
+                on how university students were already absorbing ChatGPT into daily
+                life, faster than most institutions had noticed. I was watching that
+                shift up close before most people had settled on an opinion about it.
+                Computers took decades to become the phone in your pocket. AI is running
+                that same evolution on a compressed timeline - and I'd rather be
+                building with it than debating what it is.
               </p>
               <p>
                 This site is where I run that out loud: the patterns I'm testing in
@@ -187,11 +195,12 @@ export function About() {
           <motion.div {...fadeInUp} className="flex items-center lg:text-right">
             <div className="space-y-6 text-base lg:text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
               <p>
-                Most evenings I'm reading through company filings, or writing small
-                Python scripts to check whether an idea I have about a business actually
-                holds up once you look at the numbers. I'm not trying to find the next
-                big stock. I'm trying to get better at recognizing the same three or
-                four patterns before everyone agrees they're obvious.
+                Most evenings, I'm reading through my ideas through AI, or writing .mp
+                files to check whether an idea I have about a business/project actually
+                holds up once you look at the implementation. I'm not trying to discover
+                the next best business/app/stock. I'm trying to get better at
+                recognizing the same three or four patterns before everyone agrees
+                they're obvious.
               </p>
               <p>
                 AI ends up doing a lot of that work for me - not writing the
@@ -219,7 +228,7 @@ export function About() {
               lightSrc="/assets/about-block-4-light-transparent.png"
               darkSrc="/assets/about-block-4-dark-transparent.png"
               alt="A clay-style mascot in a karate stance with a translucent gi afterimage behind him"
-              caption="A BLACK BELT, A DECADE LATER"
+              caption="I STILL PRACTICE KATA"
             />
           </motion.div>
 
@@ -230,14 +239,19 @@ export function About() {
           >
             <div className="space-y-6 text-base lg:text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
               <p>
-                Did you know: I trained karate from age 8 to 18 and I'm a black belt,
-                though I haven't trained in over ten years now.
+                <strong className="font-semibold text-gray-900 dark:text-white">
+                  Did you know
+                </strong>
+                : I trained karate from age 8 to 18 and I'm a black belt, though I
+                haven't trained in over ten years now.
               </p>
               <p>
-                When I was picking an image for the homepage, the open hand wasn't a
-                plan - it just came to me. That's mostly how this whole site works: I'm
-                printing out my imagination as I go, building the thing while I'm still
-                figuring out what it's supposed to be.
+                When I was picking an image for the homepage, the open hand wasn't the
+                plan. I was inspired by a random image I generated on ElevenLabs. And
+                the karate versions of me - made by my imagination. ChatGPT made that
+                image from one prompt, by the way. That's mostly how this whole site
+                works: I'm printing out my imagination as I go, building the thing while
+                I'm still figuring out what it's supposed to be.
               </p>
             </div>
           </motion.div>
