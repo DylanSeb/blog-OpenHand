@@ -177,7 +177,7 @@ export function FloatingFind() {
   const [isPastHero, setIsPastHero] = useState(false)
   const [isInSupport, setIsInSupport] = useState(false)
   const [hasBeenRevealed, setHasBeenRevealed] = useState(false)
-  const [isDismissedInHero, setIsDismissedInHero] = useState(false)
+  const [isManuallyClosed, setIsManuallyClosed] = useState(false)
   const [query, setQuery] = useState('')
   const [resultCount, setResultCount] = useState(0)
   const [hasQuery, setHasQuery] = useState(false)
@@ -187,9 +187,19 @@ export function FloatingFind() {
     setResultCount(highlightPage(value))
   }, [])
 
-  const closeInHero = () => {
-    setIsDismissedInHero(true)
+  const hideSearchBar = () => {
+    setIsManuallyClosed(true)
     updateSearch('')
+  }
+
+  const clearSearch = () => {
+    if (!isPastHero) {
+      hideSearchBar()
+      return
+    }
+
+    updateSearch('')
+    inputRef.current?.focus({ preventScroll: true })
   }
 
   useEffect(() => {
@@ -200,7 +210,8 @@ export function FloatingFind() {
       setIsPastHero(nextIsPastHero)
       if (nextIsPastHero) {
         setHasBeenRevealed(true)
-        setIsDismissedInHero(false)
+      } else {
+        setIsManuallyClosed(false)
       }
     }, { threshold: 0.05 })
     observer.observe(hero)
@@ -219,8 +230,7 @@ export function FloatingFind() {
     return () => observer.disconnect()
   }, [])
 
-  const isVisible = !isInSupport && (isPastHero || (hasBeenRevealed && !isDismissedInHero))
-  const showCloseButton = !isPastHero
+  const isVisible = !isInSupport && isPastHero && hasBeenRevealed && !isManuallyClosed
 
   useEffect(() => {
     const input = inputRef.current
@@ -254,7 +264,9 @@ export function FloatingFind() {
             <Search className="h-4 w-4 shrink-0" aria-hidden="true" />
             <input
               ref={inputRef}
-              type="search"
+              type="text"
+              role="searchbox"
+              inputMode="search"
               value={query}
               onChange={(event) => updateSearch(event.currentTarget.value)}
               onInput={(event) => updateSearch(event.currentTarget.value)}
@@ -264,18 +276,20 @@ export function FloatingFind() {
                 isLight ? 'placeholder:text-gray-700' : 'placeholder:text-white/70'
               }`}
             />
-            {hasQuery && <span className="text-xs tabular-nums opacity-70">{resultCount}</span>}
-            {showCloseButton && (
-              <button
-                type="button"
-                onClick={closeInHero}
-                aria-label="Close search"
-                className={`grid h-6 w-6 shrink-0 place-items-center rounded-full transition-colors ${
-                  isLight ? 'text-gray-700 hover:bg-black/10' : 'text-white/80 hover:bg-white/15'
-                }`}
-              >
-                <X className="h-4 w-4" aria-hidden="true" />
-              </button>
+            {hasQuery && (
+              <span className="flex shrink-0 items-center gap-1 text-xs tabular-nums opacity-70">
+                {resultCount} {resultCount === 1 ? 'result' : 'results'}
+                <button
+                  type="button"
+                  onClick={clearSearch}
+                  aria-label="Clear search"
+                  className={`grid h-5 w-5 place-items-center rounded-full transition-colors ${
+                    isLight ? 'text-gray-700 hover:bg-black/10' : 'text-white/80 hover:bg-white/15'
+                  }`}
+                >
+                  <X className="h-3.5 w-3.5" aria-hidden="true" />
+                </button>
+              </span>
             )}
           </div>
         </motion.div>
