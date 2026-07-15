@@ -1,31 +1,10 @@
+import { useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
+import { format } from 'date-fns'
+import { holdingSpaceEntries } from '@/data/holdingSpace'
 
-const articles = [
-  {
-    title: 'On planning diligently, and holding it loosely',
-    publication: 'Open Hand — Featured essay',
-    year: '2026',
-    link: '#',
-  },
-  {
-    title: 'What markets taught me about writing production code',
-    publication: 'Open Hand',
-    year: '2025',
-    link: '#',
-  },
-  {
-    title: 'The evaluation you actually needed was a diary',
-    publication: 'Open Hand',
-    year: '2025',
-    link: '#',
-  },
-  {
-    title: 'Small rooms: on choosing a slower publishing cadence',
-    publication: 'Open Hand',
-    year: '2024',
-    link: '#',
-  },
-]
+const ARTICLES_PER_PAGE = 5
 
 const fadeInUp = {
   initial: { opacity: 0, y: 40 },
@@ -35,10 +14,24 @@ const fadeInUp = {
 }
 
 export function Writing() {
+  const [currentPage, setCurrentPage] = useState(1)
+  const sortedArticles = useMemo(
+    () =>
+      [...holdingSpaceEntries].sort(
+        (first, second) => new Date(second.date).getTime() - new Date(first.date).getTime(),
+      ),
+    [],
+  )
+  const totalPages = Math.ceil(sortedArticles.length / ARTICLES_PER_PAGE)
+  const visibleArticles = sortedArticles.slice(
+    (currentPage - 1) * ARTICLES_PER_PAGE,
+    currentPage * ARTICLES_PER_PAGE,
+  )
+  const showPagination = totalPages > 1
+
   return (
     <section id="writing" className="section-padding">
       <div className="max-w-7xl mx-auto">
-        {/* Section Title */}
         <motion.div {...fadeInUp} className="mb-16">
           <span className="text-sm text-gray-500 tracking-widest uppercase">Essays & Notes</span>
           <div className="w-6 h-px bg-gray-400 dark:bg-gray-600 mt-2" />
@@ -51,33 +44,62 @@ export function Writing() {
           HOLDING SPACE
         </motion.h2>
 
-        {/* Articles List */}
         <div className="space-y-0">
-          {articles.map((article, index) => (
-            <motion.a
-              key={article.title}
-              href={article.link}
+          {visibleArticles.map((article, index) => (
+            <motion.div
+              key={article.slug}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="block border-t border-gray-200 dark:border-gray-800 py-6 md:py-8 group hover:bg-gray-100 dark:hover:bg-gray-900/30 transition-colors px-4 -mx-4"
             >
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4">
+              <Link
+                to={`/holding-space/${article.slug}`}
+                className="group -mx-4 flex flex-col gap-2 border-t border-gray-200 px-4 py-6 transition-colors hover:bg-gray-100 dark:border-gray-800 dark:hover:bg-gray-900/30 md:flex-row md:items-center md:justify-between md:gap-8 md:py-8"
+              >
                 <div>
-                  <h3 className="text-lg md:text-xl lg:text-2xl text-gray-900 dark:text-white font-light group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors">
+                  <h3 className="text-lg font-light text-gray-900 transition-colors group-hover:text-gray-600 dark:text-white dark:group-hover:text-gray-300 md:text-xl lg:text-2xl">
                     {article.title}
                   </h3>
-                  <p className="text-sm text-gray-500 mt-1 md:mt-2">
-                    Essay — {article.publication}
+                  <p className="mt-1 text-sm text-gray-500 md:mt-2">
+                    {article.category} - Open Hand
                   </p>
                 </div>
-                <span className="text-sm text-gray-500">{article.year}</span>
-              </div>
-            </motion.a>
+
+                <span className="text-sm text-gray-500">
+                  {format(new Date(article.date), 'd MMMM yyyy')}
+                </span>
+              </Link>
+            </motion.div>
           ))}
           <div className="border-t border-gray-200 dark:border-gray-800" />
         </div>
+
+        {showPagination && (
+          <div className="mt-8 flex items-center justify-between gap-4">
+            <button
+              type="button"
+              onClick={() => setCurrentPage((page) => Math.max(page - 1, 1))}
+              disabled={currentPage === 1}
+              className="text-sm uppercase tracking-widest text-gray-500 transition-colors hover:text-gray-900 disabled:pointer-events-none disabled:opacity-30 dark:hover:text-white"
+            >
+              Previous
+            </button>
+
+            <span className="text-sm text-gray-500">
+              Page {currentPage} of {totalPages}
+            </span>
+
+            <button
+              type="button"
+              onClick={() => setCurrentPage((page) => Math.min(page + 1, totalPages))}
+              disabled={currentPage === totalPages}
+              className="text-sm uppercase tracking-widest text-gray-500 transition-colors hover:text-gray-900 disabled:pointer-events-none disabled:opacity-30 dark:hover:text-white"
+            >
+              Next
+            </button>
+          </div>
+        )}
       </div>
     </section>
   )
