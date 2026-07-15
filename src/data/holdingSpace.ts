@@ -19,8 +19,8 @@ export const holdingSpaceEntries: HoldingSpaceEntry[] = [
     category: 'Essay',
     date: '2026-07-15T01:36:00',
     heroImage: {
-      light: 'placeholder-square',
-      dark: 'placeholder-square',
+      light: '/assets/holding-space/moments-we-create-light.png',
+      dark: '/assets/holding-space/moments-we-create-dark.png',
     },
     body: `One lesson I've picked up from people I've met: we create moments for ourselves that end up shaping how we think, how we carry ourselves, what we expect from life. The opposite is just as true. If you don't create them on purpose, someone or something else will create them for you, and you won't necessarily like what you end up with.
 
