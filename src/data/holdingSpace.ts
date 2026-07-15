@@ -44,8 +44,8 @@ Reality is what you make of it. You either shape it on purpose, or you let every
     category: 'Note',
     date: '2026-07-15T01:35:00',
     heroImage: {
-      light: 'placeholder-square',
-      dark: 'placeholder-square',
+      light: '/assets/holding-space/attention-pattern-light.png',
+      dark: '/assets/holding-space/attention-pattern-dark.png',
     },
     body: `### Two systems, not one
 
