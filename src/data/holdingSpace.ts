@@ -19,8 +19,8 @@ export const holdingSpaceEntries: HoldingSpaceEntry[] = [
     category: 'Essay',
     date: '2026-07-15T01:36:00',
     heroImage: {
-      light: 'placeholder-square',
-      dark: 'placeholder-square',
+      light: '/assets/holding-space/moments-we-create-light.png',
+      dark: '/assets/holding-space/moments-we-create-dark.png',
     },
     body: `One lesson I've picked up from people I've met: we create moments for ourselves that end up shaping how we think, how we carry ourselves, what we expect from life. The opposite is just as true. If you don't create them on purpose, someone or something else will create them for you, and you won't necessarily like what you end up with.
 
@@ -44,8 +44,8 @@ Reality is what you make of it. You either shape it on purpose, or you let every
     category: 'Note',
     date: '2026-07-15T01:35:00',
     heroImage: {
-      light: 'placeholder-square',
-      dark: 'placeholder-square',
+      light: '/assets/holding-space/attention-pattern-light.png',
+      dark: '/assets/holding-space/attention-pattern-dark.png',
     },
     body: `### Two systems, not one
 

@@ -124,6 +124,8 @@ export default function HoldingSpaceArticle() {
     return <Navigate to="/" replace />
   }
 
+  const hasHeroImage = entry.heroImage.light !== 'placeholder-square'
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <GrainOverlay />
@@ -154,12 +156,34 @@ export default function HoldingSpaceArticle() {
                 </p>
               </div>
 
-              <div className="mb-12 aspect-square w-full max-w-[42rem] border border-gray-300 bg-gray-100 dark:border-gray-800 dark:bg-[#111]">
-                <div className="flex h-full w-full items-center justify-center">
-                  <span className="font-display text-[16vw] leading-none text-gray-300 dark:text-gray-800 md:text-8xl">
-                    IMAGE
-                  </span>
-                </div>
+              <div
+                className={cn(
+                  'mb-12 aspect-square w-full max-w-[42rem] overflow-hidden',
+                  hasHeroImage
+                    ? 'bg-transparent'
+                    : 'border border-gray-300 bg-gray-100 dark:border-gray-800 dark:bg-[#111]',
+                )}
+              >
+                {!hasHeroImage ? (
+                  <div className="flex h-full w-full items-center justify-center">
+                    <span className="font-display text-[16vw] leading-none text-gray-300 dark:text-gray-800 md:text-8xl">
+                      IMAGE
+                    </span>
+                  </div>
+                ) : (
+                  <>
+                    <img
+                      src={entry.heroImage.light}
+                      alt=""
+                      className="h-full w-full object-cover dark:hidden"
+                    />
+                    <img
+                      src={entry.heroImage.dark}
+                      alt=""
+                      className="hidden h-full w-full object-cover dark:block"
+                    />
+                  </>
+                )}
               </div>
 
               <div className="max-w-3xl space-y-7 text-lg leading-relaxed text-gray-700 dark:text-gray-300 md:text-xl">
