@@ -170,6 +170,22 @@
   }
 }
 
+.signal-section {
+  padding: 6rem 2rem 7rem;
+}
+
+@media (min-width: 768px) {
+  .signal-section {
+    padding: 7rem 4rem 8rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .signal-section {
+    padding: 8rem 6rem 9rem;
+  }
+}
+
 /* Image grayscale filter */
 .img-editorial {
   filter: grayscale(100%);
@@ -178,4 +194,97 @@
 
 .img-editorial:hover {
   filter: grayscale(0%);
+}
+
+.signal-glass-stage {
+  transform-style: preserve-3d;
+  isolation: isolate;
+}
+
+.signal-carousel-panel {
+  position: relative;
+  border: 1px solid rgba(63, 63, 70, 0.24);
+  background: rgba(63, 63, 70, 0.18);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.32),
+    inset 0 -28px 70px rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(22px) saturate(145%);
+  -webkit-backdrop-filter: blur(22px) saturate(145%);
+  transform-style: preserve-3d;
+  will-change: transform, filter, opacity;
+}
+
+.signal-carousel-panel--active {
+  border-color: rgba(63, 63, 70, 0.32);
+  background: rgba(63, 63, 70, 0.24);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.38),
+    inset 0 -30px 78px rgba(255, 255, 255, 0.08);
+}
+
+.signal-carousel-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.12), transparent 22%, transparent 78%, rgba(255, 255, 255, 0.08)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.12), transparent 42%, rgba(0, 0, 0, 0.16));
+  box-shadow: inset 0 0 56px rgba(255, 255, 255, 0.06), inset 0 -34px 80px rgba(0, 0, 0, 0.2);
+}
+
+.signal-carousel-shine {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.28), transparent 35%),
+    radial-gradient(circle at 72% 12%, rgba(255, 255, 255, 0.22), transparent 24%);
+  mix-blend-mode: screen;
+}
+
+.dark .signal-carousel-panel {
+  border-color: rgba(255, 255, 255, 0.38);
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.42),
+    inset 0 -28px 70px rgba(255, 255, 255, 0.08);
+}
+
+.dark .signal-carousel-panel--active {
+  border-color: rgba(255, 255, 255, 0.58);
+  background: rgba(255, 255, 255, 0.26);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.52),
+    inset 0 -30px 78px rgba(255, 255, 255, 0.1);
+}
+
+.signal-overlay-panel {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(115, 115, 115, 0.45) transparent;
+}
+
+.signal-overlay-panel:hover {
+  scrollbar-width: auto;
+}
+
+.signal-overlay-panel::-webkit-scrollbar {
+  width: 4px;
+}
+
+.signal-overlay-panel:hover::-webkit-scrollbar {
+  width: 10px;
+}
+
+.signal-overlay-panel::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.signal-overlay-panel::-webkit-scrollbar-thumb {
+  background: rgba(115, 115, 115, 0.45);
+  border-radius: 999px;
+}
+
+.signal-overlay-panel:hover::-webkit-scrollbar-thumb {
+  background: rgba(163, 163, 163, 0.7);
 }
