@@ -176,6 +176,7 @@ export function FloatingFind() {
   const inputRef = useRef<HTMLInputElement>(null)
   const [isPastHero, setIsPastHero] = useState(false)
   const [isInSupport, setIsInSupport] = useState(false)
+  const [isInSignal, setIsInSignal] = useState(false)
   const [hasBeenRevealed, setHasBeenRevealed] = useState(false)
   const [isManuallyClosed, setIsManuallyClosed] = useState(false)
   const [query, setQuery] = useState('')
@@ -230,7 +231,19 @@ export function FloatingFind() {
     return () => observer.disconnect()
   }, [])
 
-  const isVisible = !isInSupport && isPastHero && hasBeenRevealed && !isManuallyClosed
+  useEffect(() => {
+    const signal = document.getElementById('signal')
+    if (!signal) return
+
+    const observer = new IntersectionObserver(([entry]) => {
+      setIsInSignal(entry.isIntersecting)
+    }, { threshold: 0.18 })
+
+    observer.observe(signal)
+    return () => observer.disconnect()
+  }, [])
+
+  const isVisible = !isInSupport && !isInSignal && isPastHero && hasBeenRevealed && !isManuallyClosed
 
   useEffect(() => {
     const input = inputRef.current

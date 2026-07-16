@@ -1,0 +1,8 @@
+<svg width="960" height="960" viewBox="0 0 960 960" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="960" height="960" fill="#0F0F0F"/>
+  <circle cx="480" cy="480" r="274" stroke="#E8E8E8" stroke-width="2"/>
+  <path d="M202 500C316 356 434 304 556 344C644 372 712 444 758 560" stroke="#F5F5F5" stroke-width="40" stroke-linecap="square"/>
+  <path d="M254 606C384 514 504 488 614 528C662 546 706 576 746 618" stroke="#737373" stroke-width="22" stroke-linecap="square"/>
+  <text x="126" y="812" fill="#F5F5F5" font-family="Arial, sans-serif" font-size="70" font-weight="700" letter-spacing="12">SWIFT</text>
+  <text x="130" y="864" fill="#A3A3A3" font-family="Arial, sans-serif" font-size="24" letter-spacing="8">LEDGER MILESTONE</text>
+</svg>
